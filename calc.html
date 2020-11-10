@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <section id="root"></section>
+
+        <script type="text/babel">
+       
+       function clearAll()
+       {
+        document.getElementById('clear').style.display="block";
+        document.getElementById('clear').addEventListener('click',function()
+        {
+            console.log('hello');
+        document.getElementById('one').value=" ";
+        document.getElementById('two').value=" ";
+        document.getElementById('operation').innerHTML="Click me";
+        });
+        
+       }
+
+        function display()
+        {
+            let ip1 = parseInt (document.getElementById('one').value);
+            let ip2 = parseInt(document.getElementById('two').value);
+            if(Number.isInteger(ip1) && Number.isInteger(ip2))
+            {
+            let x = document.getElementById("operator").selectedIndex;
+            let optionChoosen = document.getElementsByTagName("option")[x].value;
+            let ans = document.querySelector('.answer');
+            let result=0;
+            switch(optionChoosen)
+            {
+                
+                case 'add':
+                  result = ip1+ip2;
+                 ans.innerHTML= result;
+                 break;
+                case 'subtract':
+                  result = ip1-ip2;
+                 ans.innerHTML= result;
+                 break;
+                case 'multiply':
+                  result = ip1*ip2;
+                 ans.innerHTML= result;
+                 break;
+                case 'divide':
+                  result = ip1/ip2;
+                 ans.innerHTML= result;
+                 break;
+                case 'percentage':
+                  result = ((ip1*ip2)/100);
+                 ans.innerHTML= result;
+                 break;
+                default:alert("Select an operator");
+            }
+           clearAll();
+            }
+            else{alert('Kindly enter number in each field');}
+            
+        }
+
+       function App()
+       {
+           return(
+            <div>
+                           <h1 className="head">Simple Calculator</h1>
+                           <div className="main">
+                            <div className="calcy">
+                            <input type="text" className="ip" id="one" placeholder="1st no."/> 
+                            
+                            <select id="operator">  
+                                    <option value="">operator</option>                                 
+                                    <option value="add" className="val">+</option>
+                                    <option value="subtract" className="val">-</option>
+                                    <option value="multiply" className="val">X</option>
+                                    <option value="divide" className="val">/</option>
+                                    <option value="percentage" className="val">%</option>
+                                    </select>
+                            <input type="text" className="ip" id="two" placeholder="2nd no."/>
+                            </div>  
+                            <div className="output">
+                            <span className="result" >=</span> <a href="#" id="operation" className="answer">Click me </a>
+                            </div>    
+                            <button id="clear"><a href="#">Clear all</a></button>
+                        </div>   
+           </div>  
+           );
+       }
+       
+       ReactDOM.render(<App/>,document.getElementById('root'));
+       document.getElementById('clear').style.display="none";
+       document.getElementById('operation').addEventListener('click',display)
+        </script>
+</body>
+</html>
